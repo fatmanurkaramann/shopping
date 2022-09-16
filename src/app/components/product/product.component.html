@@ -21,7 +21,7 @@
           />
           <div class="card-body">
             <div class="text-center" style="display: flex; justify-content: space-around; margin-bottom: 7px;">
-              <span class="badge rounded-pill bg-primary"
+              <span class="badge rounded-pill bg" style="background-color:#5d3ebc ;color: aliceblue;"
                 >{{ product.name }}</span
               >
               <span class=" price-hp">{{ product.price }} TL</span>
@@ -42,8 +42,8 @@
               </div>
             </div>
             <div class="text-center my-4">
-              <a href="#" class="btn btn-warning"   *ngIf="!isAuth"
-              class="btn btn-primary mt-2"
+              <a href="#" style="background-color:#5d3ebc ;color: aliceblue;"  *ngIf="!isAuth"
+              class="btn btn mt-2"
               (click)="addBasket(product)">Add to Cart</a>
             </div>
           </div>
