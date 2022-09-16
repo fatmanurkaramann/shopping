@@ -1,52 +1,76 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import {
+  AfterContentChecked,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { BasketModel } from 'src/app/models/basket';
-import { ProductModule } from 'src/app/models/product';
+import { ProductModel } from 'src/app/models/product';
+import { ResponseModel } from 'src/app/models/responseModel';
+import { AuthService } from 'src/app/services/auth.service';
+import { BasketService } from 'src/app/services/basket.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
 })
-export class ProductComponent implements OnInit {
-  products: ProductModule[] = [
-    {
-      name: 'Peynir',
-      price: 26.61,
-      imageUrl:
-        'https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/10019128/10019128-3fe8d7-1650x1650.jpg',
-    },
-    {
-      name: 'Zeytin',
-      price: 295.5,
-      imageUrl:
-        'https://www.surenzeytin.com/image/cache/catalog/404/siyah/teneke/5-5-teneke-2000x2000.jpg',
-    },
-  ];
-
-  baskets:BasketModel[]=[]
-  total:number=0;
-
-  @Output() myEvent:EventEmitter<any>=new EventEmitter();
-
+export class ProductComponent implements OnInit, AfterContentChecked {
+  products: ProductModel[] = [];
+  isAuth: boolean = false;
+  filterText: string = '';
+  isLoaded: boolean = false;
   constructor(
-    private toastrService:ToastrService
+    private toastrService: ToastrService,
+    private productService: ProductService,
+    private basketService: BasketService,
+    private authService: AuthService,
+    private httpClient: HttpClient,
+    private spinner: NgxSpinnerService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getList();
+  }
+  ngAfterContentChecked(): void {
+    this.isAuth = this.authService.isAuth;
+  }
 
-  addBasket(product:ProductModule){
-    let basketModel=new BasketModel();
-    basketModel.product=product
+  getList() {
+    this.spinner.show();
+    this.isLoaded = false;
+    this.productService.getList().subscribe(
+      (res: any) => {
+        this.spinner.hide();
+        this.products = res.data;
+      },
+      (err) => {
+        this.spinner.hide();
+        if (err.status == '400') {
+          this.toastrService.error(err.statusText);
+        } else {
+        }
+      }
+    );
+  }
 
-    basketModel.quantity=parseInt((<HTMLInputElement>document.getElementById("quantity-" +product.name)).value);
-    (<HTMLInputElement>document.getElementById("quantity-" +product.name)).value="1"
+  addBasket(product: ProductModel) {
+    let basketModel = new BasketModel();
+    basketModel.product = product;
 
-    this.baskets.push(basketModel);
-    //this.total=this.total+(basketModel.quantity* product.price)
+    basketModel.quantity = parseInt(
+      (<HTMLInputElement>document.getElementById('quantity-' + product.name))
+        .value
+    );
+    (<HTMLInputElement>(
+      document.getElementById('quantity-' + product.name)
+    )).value = '1';
 
-    console.log(this.baskets)
-    this.myEvent.emit({data:this.baskets})
-    this.toastrService.success(product.name+" sepete eklendi")
+    this.basketService.addBasket(basketModel);
   }
 }

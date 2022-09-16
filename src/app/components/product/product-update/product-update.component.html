@@ -1,0 +1,49 @@
+<div class="container h-100 d-flex align-items-center justify-content-center">
+  <form (ngSubmit)="update()" [formGroup]="updateForm">
+  <div class="form-group" >
+    <div class="mb-3">
+      <label for="exampleInputEmail1">Product Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        formControlName="name"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1">Stock Quantity</label>
+      <input
+        type="number"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        formControlName="stock"
+
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1">Unit Price</label>
+      <input
+        type="number"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        formControlName="price"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1">Image</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        formControlName="imageUrl"
+
+      />
+    </div>
+    <button class="btn btn-success" type="submit">Save</button>
+  </div>
+</form>
+</div>

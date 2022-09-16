@@ -1,0 +1,73 @@
+<script type="text/javascript" src="assets/js/jquery-2.1.1.min.js"></script>
+
+<nav>
+  <div  class="navbar">
+    <div class="nav nav-tabs" id="myTab" role="tablist" style="border: none;">
+      <a
+        class="nav-item nav-link"
+      [routerLinkActiveOptions]="{exact:true}"
+        routerLink="/"
+        [routerLinkActive]="'active'"
+        >Shopping</a
+      >
+      <a
+      [routerLinkActive]="'active'"
+        class="nav-item nav-link"
+        id="nav-profile-tab"
+        data-toggle="tab"
+        href="#nav-profile"
+        role="tab"
+        aria-controls="nav-profile"
+        aria-selected="false"
+        routerLink="/product-add"
+        >Add Products</a
+      >
+      <a
+      [routerLinkActive]="'active'"
+        class="nav-item nav-link"
+        id="nav-contact-tab"
+        data-toggle="tab"
+        href="#nav-contact"
+        role="tab"
+        aria-controls="nav-contact"
+        aria-selected="false"
+        routerLink="/order"
+        >Orders</a
+      >
+
+  </div>
+  <div class="button" >
+    <button
+      *ngIf="!isAuth"
+      class="btn btn mx-2"
+      style="background-color:  #5d3ebc;color: white;"
+      href="#"
+      routerLink="/login"
+    >
+      <i class="fa fa-home"></i>Giriş Yap
+    </button>
+    <button
+    style="background-color:  #5d3ebc;color: white;"
+      *ngIf="!isAuth"
+      class="btn btn mx-2"
+      href="#"
+      routerLink="/login"
+    >
+      <i class="fa fa-home"></i>Kayıt Ol
+    </button>
+
+    <button *ngIf="isAuth" class="btn btn-danger" href="#" (click)="logout()">
+      Çıkış Yap
+    </button>
+    </div>
+  </div>
+</nav>
+
+<script>
+  $('#myTab a').on('click', function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+</script>
+
+

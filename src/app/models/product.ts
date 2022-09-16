@@ -1,5 +1,8 @@
-export class ProductModule{
-  name:string
-  price:number
-  imageUrl:string
+export class ProductModel {
+  id:number;
+  name: string;
+  stock: number;
+  price: number;
+  imageUrl: string;
+  codeGuid:string;
 }

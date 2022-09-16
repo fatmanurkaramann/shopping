@@ -1,0 +1,24 @@
+
+.navbar{
+	position:fixed; top:0px; left:0px; right:0px;
+    height:70px;
+    background-color: rgb(76, 51, 152);
+    padding-left: 40px;
+    display: flex;
+    justify-content: space-around;
+    border: none;
+    outline: none;
+}
+.button{
+  color: rgb(219, 219, 255);
+}
+.navbar a{
+  color: rgb(219, 219, 255);
+}
+
+.active{
+  background-color:  #5d3ebc;
+  border: none;
+  outline: none;
+  text-decoration: none;
+}

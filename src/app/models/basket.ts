@@ -1,6 +1,6 @@
-import { ProductModule } from "./product";
+import { ProductModel } from "./product";
 
 export class BasketModel{
-  product:ProductModule
+  product:ProductModel
   quantity:number
 }

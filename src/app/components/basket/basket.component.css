@@ -1,0 +1,12 @@
+.table{
+  background-color: antiquewhite;
+  width: 70%;
+  margin:auto;
+
+}
+.form-control{
+  width: 70px;
+}
+.btn.btn-success{
+margin-top: 10px;
+}
