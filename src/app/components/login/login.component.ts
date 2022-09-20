@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { LoginModel } from 'src/app/models/login';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 loginForm:FormGroup
-  constructor(private formBuilder:FormBuilder) { }
+  constructor(private formBuilder:FormBuilder,private authService:AuthService,private toastrService:ToastrService) { }
 
   ngOnInit(): void {
     this.createLoginForm()
@@ -22,7 +25,10 @@ loginForm:FormGroup
   }
 login(){
   if(this.loginForm.valid){
-    console.log(this.loginForm.value)
+    let loginModel:LoginModel=this.loginForm.value
+  this.authService.login(loginModel)
+  }else{
+    this.toastrService.error("zorunlu alan")
   }
 }
 }

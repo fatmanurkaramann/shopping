@@ -5,12 +5,12 @@
   crossorigin="anonymous"
   referrerpolicy="no-referrer"
 />
-<div>
+<div >
   <div class="row" style="position: relative;left: 100%;">
 
     <div>
       <div >
-        <button type="button" class="button" routerLink="/basket" >
+        <button type="button" class="button" routerLink="/basket" *ngIf="isAuth">
           <span class="button-icon"
             ><i class="fa-solid fa-cart-shopping" style="color: rgb(76, 51, 152);"></i
           ></span>

@@ -48,6 +48,7 @@ export class ProductComponent implements OnInit, AfterContentChecked {
       (res: any) => {
         this.spinner.hide();
         this.products = res.data;
+        console.log(this.products)
       },
       (err) => {
         this.spinner.hide();

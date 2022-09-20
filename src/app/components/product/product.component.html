@@ -10,26 +10,25 @@
 
 <main style="padding-top: 160px;display: flex;justify-content: space-between;">
   <div
-    class="container-fluid bg-trasparent my-4 p-3"
+
   >
-    <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3" >
-      <div class="col" *ngFor="let product of products | filterProductPipe: filterText">
+    <div  id="cards" >
+      <div class="col" *ngFor="let product of products | filterProductPipe: filterText" id="card" >
         <div class="card-group " >
           <img
           src="{{ product.imageUrl }}"
             class="card-img-top"
           />
-          <div class="card-body">
-            <div class="text-center" style="display: flex; justify-content: space-around; margin-bottom: 7px;">
-              <span class="badge rounded-pill bg" style="background-color:#5d3ebc ;color: aliceblue;"
-                >{{ product.name }}</span
+          <div class="card-body" >
+            <div class="text-center" style=" margin-bottom: 7px;">
+              <p class="badge rounded-pill " style="background-color:#5d3ebc ;color: aliceblue; word-wrap:break-word;   width:100px; "
+                >{{ product.name }}</p
               >
-              <span class=" price-hp">{{ product.price }} TL</span>
+              <p class=" price-hp">{{ product.price }} TL</p>
             </div>
             <div class="form-group text-center">
               <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-4">
+                <div >
                   <input
                     min="1"
                     type="number"
@@ -38,11 +37,11 @@
                     value="1"
                   />
                 </div>
-                <div class="col-md-4"></div>
+
               </div>
             </div>
             <div class="text-center my-4">
-              <a href="#" style="background-color:#5d3ebc ;color: aliceblue;"  *ngIf="!isAuth"
+              <a href="#" style="background-color:#5d3ebc ;color: aliceblue;"  *ngIf="isAuth"
               class="btn btn mt-2"
               (click)="addBasket(product)">Add to Cart</a>
             </div>

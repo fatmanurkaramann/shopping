@@ -19,9 +19,10 @@ export class BasketIconComponent implements OnInit,AfterContentChecked {
 
   ngOnInit(): void {
     this.baskets = this.basketService.baskets;
+    this.isAuth=this.authService.isAuth;
   }
   ngAfterContentChecked(): void {
     this.total = this.basketService.total;
-
+    this.isAuth=this.authService.isAuth;
   }
 }
