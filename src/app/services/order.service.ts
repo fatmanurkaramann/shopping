@@ -1,20 +1,21 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { BasketModel } from '../models/basket';
+import { ListResponseModel } from '../models/listResponseModel';
 import { OrderModel } from '../models/order';
+import { OrderDtoModel } from '../models/orderDtoModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  orders:OrderModel[]=[]
-  constructor() { }
 
-  addOrder(baskets:BasketModel[]){
-    let order=new OrderModel()
-    order.baskets=baskets
-    order.date=Date()
+  constructor(private httpClient:HttpClient) { }
 
-    this.orders.push(order)
-    console.log(this.orders)
+  getList():Observable<ListResponseModel<OrderDtoModel>>{
+    let api="https://webapi.angulareducation.com/api/Orders/getList"
+    return this.httpClient.get<ListResponseModel<OrderDtoModel>>(api)
   }
+
 }

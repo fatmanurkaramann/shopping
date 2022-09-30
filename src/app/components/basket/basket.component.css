@@ -10,3 +10,20 @@
 .btn.btn-success{
 margin-top: 10px;
 }
+.label-control{
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  background-color:  #5d3ebc;
+  color: #FFFF
+}
+.button{
+  width: 32px;
+  height: 32px;
+  border: none;
+  color: #5d3ebc; background-color: #FFFF;
+}

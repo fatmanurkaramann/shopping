@@ -1,4 +1,4 @@
-<div class="container h-100 d-flex align-items-center justify-content-center">
+<div class="container h-100 d-flex align-items-center justify-content-center"  style="padding-top: 160px;display: flex;justify-content: space-between;">
   <form (ngSubmit)="update()" [formGroup]="updateForm">
   <div class="form-group" >
     <div class="mb-3">
@@ -18,7 +18,7 @@
         class="form-control"
         id="exampleInputEmail1"
         aria-describedby="emailHelp"
-        formControlName="stock"
+        formControlName="inventoryQuantity"
 
       />
     </div>
@@ -43,7 +43,8 @@
 
       />
     </div>
-    <button class="btn btn-success" type="submit">Save</button>
+    <button class="btn btn-success mx-2" type="submit">Save</button>
+    <app-product-delete></app-product-delete>
   </div>
 </form>
 </div>

@@ -23,7 +23,7 @@ const routes: Routes = [
         component: ProductAddComponent,
       },
       {
-        path: 'product-update/:id',
+        path: 'product-update/:value',
         canActivate: [AuthGuard],
         component: ProductUpdateComponent,
       },
@@ -31,7 +31,6 @@ const routes: Routes = [
       { path: 'order', component: OrderComponent },
       { path: 'basket', component: BasketComponent },
       { path: 'login', component: LoginComponent },
-
     ],
   },
   { path: '**', component: NotFoundComponent },

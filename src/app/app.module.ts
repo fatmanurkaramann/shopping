@@ -22,7 +22,11 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/layouts/header/header.component';
 import { BasketIconComponent } from './components/basket-icon/basket-icon.component';
-
+import {MatDialogModule} from "@angular/material/dialog";
+import { ProductDeleteComponent } from './components/product/product-delete/product-delete.component'
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { AddBasketComponent } from './components/basket/add-basket/add-basket.component';
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,8 +45,12 @@ import { BasketIconComponent } from './components/basket-icon/basket-icon.compon
     LoginComponent,
     HeaderComponent,
     BasketIconComponent,
+    ProductDeleteComponent,
+    AddBasketComponent,
   ],
   imports: [
+    ModalModule.forRoot(),
+    MatDialogModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -50,13 +58,15 @@ import { BasketIconComponent } from './components/basket-icon/basket-icon.compon
     HttpClientModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    SweetAlert2Module.forRoot(),
     ToastrModule.forRoot({
       closeButton: true,
       progressBar: true,
       positionClass: 'toast-bottom-right',
     }),
   ],
-  providers: [],
+  providers: [BsModalService],
   bootstrap: [AppComponent],
+
 })
 export class AppModule {}

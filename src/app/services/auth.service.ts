@@ -18,30 +18,34 @@ export class AuthService {
     private router: Router
   ) {}
 
-  isAuthenticated() {
-    return this.isAuth;
+  isAuthenticated(): boolean {
+    if (localStorage.getItem('token')) {
+      return true;
+    } else {
+      return false;
+    }
   }
-  login(loginModel: LoginModel):boolean {
+  login(loginModel: LoginModel): boolean {
     let api = 'https://webapi.angulareducation.com/api/users/login';
     this.httpClient
       .post<SingleResponseModel<TokenModel>>(api, loginModel)
       .subscribe(
         (res) => {
           localStorage.setItem('token', res.data.token);
-          this.toastrService.success("Giriş Başarılı!");
+          this.toastrService.success('Giriş Başarılı!');
           this.isAuth = true;
           this.router.navigate(['/']);
-          return true
+          return true;
         },
         (err) => {
           this.toastrService.error(err.error);
-          return false
+          return false;
         }
       );
-      return true
+    return true;
   }
   logout() {
-    localStorage.removeItem("token")
+    localStorage.removeItem('token');
     this.isAuth = false;
     this.router.navigate(['/']);
   }

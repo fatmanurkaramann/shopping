@@ -1,0 +1,15 @@
+<div   class="col"
+*ngFor="let product of products | filterProductPipe: filterText"
+id="card">
+  <div class="text-center my-4" >
+  <a
+    href="#"
+    style="background-color: #5d3ebc; color: aliceblue"
+
+    class="btn btn mt-2"
+    (click)="addBasket(product)"
+    >Add to Cart</a
+  >
+</div>
+</div>
+

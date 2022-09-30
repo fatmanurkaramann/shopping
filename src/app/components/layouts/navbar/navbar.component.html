@@ -11,6 +11,7 @@
         >Shopping</a
       >
       <a
+      *ngIf="isAuth"
       [routerLinkActive]="'active'"
         class="nav-item nav-link"
         id="nav-profile-tab"

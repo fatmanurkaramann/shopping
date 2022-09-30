@@ -6,13 +6,13 @@ import { ProductModel } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
-  selector: 'app-product-update',
-  templateUrl: './product-update.component.html',
-  styleUrls: ['./product-update.component.css'],
+  selector: 'app-product-delete',
+  templateUrl: './product-delete.component.html',
+  styleUrls: ['./product-delete.component.css'],
 })
-export class ProductUpdateComponent implements OnInit {
-  updateForm: FormGroup;
+export class ProductDeleteComponent implements OnInit {
   productModel: ProductModel;
+  updateForm: FormGroup;
   constructor(
     private productService: ProductService,
     private formBuilder: FormBuilder,
@@ -20,6 +20,7 @@ export class ProductUpdateComponent implements OnInit {
     private route: Router,
     private toastrService:ToastrService
   ) {}
+
   ngOnInit(): void {
     this.crateUpdateForm();
     this.getById();
@@ -49,15 +50,10 @@ export class ProductUpdateComponent implements OnInit {
       this.updateForm.controls["codeGuid"].setValue(res.data.codeGuid)
     })
   }
-  update() {
-    if(this.updateForm.valid){
-      this.productService.update(this.updateForm.value).subscribe((res)=>{
-        this.route.navigate(["/"])
-        this.toastrService.success(res.message)
-      })
-    }
-    else{
-      this.toastrService.info("Zorunlu alanları doldurunuz.")
-    }
+  delete() {
+    this.productService.delete(this.updateForm.value).subscribe((res) => {
+      this.route.navigate(['/']);
+      this.toastrService.info(res.message);
+    });
   }
 }

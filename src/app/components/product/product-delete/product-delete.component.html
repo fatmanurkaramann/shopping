@@ -1,0 +1,17 @@
+<button
+  type="button"
+  class="btn btn-danger"
+  [swal]="deleteSwal"
+  (confirm)="delete()"
+>
+  Delete
+</button>
+<swal
+  #deleteSwal
+  title="Delete?"
+  text="Are you sure?"
+  type="question"
+  [showCancelButton]="true"
+  [focusCancel]="true"
+  [swalOptions]="{ confirmButtonText: 'Delete' }"
+></swal>

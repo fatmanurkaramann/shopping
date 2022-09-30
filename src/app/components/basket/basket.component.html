@@ -1,3 +1,4 @@
+
 <div style="margin: 90px;">
   <h3 class="text-center">Sepetiniz</h3>
 <table class="table">
@@ -7,7 +8,7 @@
       <th>Product Name</th>
       <th>Quantity</th>
       <th>Total</th>
-      <th>Transactions </th>
+
     </tr>
   </thead>
   <tbody>
@@ -15,24 +16,29 @@
       <td>{{ i + 1 }}</td>
       <td>{{ basket.product.name }}</td>
       <td>
-        <input
+        <button *ngIf="basket.quantity==1" (click)="deleteItem(basket)" class="button"><i class="fa-regular fa-trash-can"></i></button>
+        <button id="button" *ngIf="basket.quantity>1" (click)="updateBasket(basket,-1)" class="button" ><i class="fa fa-minus"></i></button>
+        <label class="label-control"
+        id="changeQuantity-{{ basket.product.name }}"
+        #basketQuantity
+        [innerText]="basket.quantity"
+        >
+        </label>
+        <button  (click)="updateBasket(basket,1)" class="button"><i class="fa fa-plus"></i></button>
+
+        <!-- <input
           type="number"
-          id="changeQuantity-{{ basket.product.name }}"
-          (click)="changeProduct(basket,basketQuantity)"
+          (click)="updateBasket(basket,basketQuantity)"
           min="1"
           class="form-control"
           [value]="basket.quantity"
-          #basketQuantity
-        />
+           -->
+        <!-- /> -->
       </td>
       <td>
         {{ basket.quantity * basket.product.price | currency: "":"":"1.2-2" }}
       </td>
-      <td>
-        <button class="btn btn-sm btn-danger" (click)="deleteItem(basket)">
-          Sil
-        </button>
-      </td>
+
     </tr>
   </tbody>
   <tfoot>
