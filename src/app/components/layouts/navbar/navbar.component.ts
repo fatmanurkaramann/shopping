@@ -27,6 +27,7 @@ export class NavbarComponent implements OnInit, AfterContentChecked {
   isAuth: boolean = false;
   filterText: string = '';
   panelOpenState = false;
+  text:string="Hesabım"
   constructor(private authService: AuthService) {}
   ngOnInit(): void {
     this.isAuth = this.authService.isAuth;
