@@ -1,18 +1,18 @@
 <script type="text/javascript" src="assets/js/jquery-2.1.1.min.js"></script>
 
-<nav>
-  <div  class="navbar">
-    <div class="nav nav-tabs" id="myTab" role="tablist" style="border: none;">
+<nav style="overflow-x: hidden; max-width: 100%">
+  <div class="navbar">
+    <div class="nav nav-tabs" id="myTab" role="tablist" style="border: none">
       <a
         class="nav-item nav-link"
-      [routerLinkActiveOptions]="{exact:true}"
+        [routerLinkActiveOptions]="{ exact: true }"
         routerLink="/"
         [routerLinkActive]="'active'"
-        >Shopping</a
+        >Ürünler</a
       >
       <a
-      *ngIf="isAuth"
-      [routerLinkActive]="'active'"
+        *ngIf="isAuth"
+        [routerLinkActive]="'active'"
         class="nav-item nav-link"
         id="nav-profile-tab"
         data-toggle="tab"
@@ -21,54 +21,80 @@
         aria-controls="nav-profile"
         aria-selected="false"
         routerLink="/product-add"
-        >Add Products</a
+        >Ürün Ekle</a
       >
-      <a
-      [routerLinkActive]="'active'"
-        class="nav-item nav-link"
-        id="nav-contact-tab"
-        data-toggle="tab"
-        href="#nav-contact"
-        role="tab"
-        aria-controls="nav-contact"
-        aria-selected="false"
-        routerLink="/order"
-        >Orders</a
+    </div>
+
+    <div class="button">
+      <!-- <button
+        *ngIf="!isAuth"
+        class="btn btn mx-2"
+        id="home1"
+        style="color: black; border: none; border: 0"
+        href="#"
+        routerLink="/login"
       >
+        <i class="fa fa-home" id="giris"></i>Giriş Yap
+      </button>
+      <button
+        id="home2"
+        style="color: black; border: none; border: 0"
+        *ngIf="!isAuth"
+        class="btn btn mx-2"
+        href="#"
+        routerLink="/login"
+      >
+        <i class="fa-sharp fa-solid fa-user-plus"></i>Kayıt Ol
+      </button> -->
+    </div>
+  <app-basket-icon></app-basket-icon>
 
   </div>
-  <div class="button" >
-    <button
-      *ngIf="!isAuth"
-      class="btn btn mx-2"
-      style="background-color:  #5d3ebc;color: white;"
-      href="#"
-      routerLink="/login"
+  <div class="dropdown">
+    <i
+      class="fa fa-user-o"
+      aria-hidden="true"
+      placeholder="profil"
+      type="text"
+      readonly
+      ><a
+        style="font-family: 'Times New Roman', Times, serif; padding-left: 10px"
+        >Profil</a
+      ></i
     >
-      <i class="fa fa-home"></i>Giriş Yap
-    </button>
-    <button
-    style="background-color:  #5d3ebc;color: white;"
-      *ngIf="!isAuth"
-      class="btn btn mx-2"
-      href="#"
-      routerLink="/login"
-    >
-      <i class="fa fa-home"></i>Kayıt Ol
-    </button>
 
-    <button *ngIf="isAuth" class="btn btn-danger" href="#" (click)="logout()">
-      Çıkış Yap
-    </button>
+    <div class="options">
+      <div
+        *ngIf="!isAuth"
+        id="home1"
+        href="#"
+        routerLink="/login"
+      >
+        Giriş Yap
+      </div>
+      <div *ngIf="!isAuth" href="#" routerLink="/login" id="home2">Üye Ol</div>
+      <div style="color: darkslateblue" *ngIf="isAuth">Fatma Nur Karaman</div>
+      <div onclick="show('HTML')" routerLink="/order" *ngIf="isAuth">
+        Siparişlerim
+      </div>
+      <div onclick="show('CSS')" *ngIf="isAuth">Adreslerim</div>
+      <button
+        class="logoutButton"
+        style="border: none; border: 0; margin-left: 12px"
+        *ngIf="isAuth"
+        href="#"
+        (click)="logout()"
+      >
+        Çıkış Yap
+      </button>
     </div>
+
   </div>
 </nav>
 
 <script>
-  $('#myTab a').on('click', function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
+  $("#myTab a").on("click", function (e) {
+    e.preventDefault();
+    $(this).tab("show");
+  });
 </script>
-
-

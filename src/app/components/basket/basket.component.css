@@ -1,16 +1,22 @@
-.table{
-  background-color: antiquewhite;
-  width: 70%;
-  margin:auto;
+.table {
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-top: 30px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 
 }
-.form-control{
+.form-control {
   width: 70px;
 }
-.btn.btn-success{
-margin-top: 10px;
+.btn.btn-success {
+  margin-top: 10px;
 }
-.label-control{
+.label-control {
   width: 32px;
   height: 32px;
   display: inline-flex;
@@ -18,12 +24,19 @@ margin-top: 10px;
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
-  background-color:  #5d3ebc;
-  color: #FFFF
+  background-color: #5d3ebc;
+  color: #ffff;
 }
-.button{
+.button {
   width: 32px;
   height: 32px;
   border: none;
-  color: #5d3ebc; background-color: #FFFF;
+  color: #5d3ebc;
+  background-color: #ffff;
+}
+.container {
+  width: 100%;
+margin-top: 130px;
+
+
 }

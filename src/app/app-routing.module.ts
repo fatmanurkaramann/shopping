@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LayoutsComponent } from './components/layouts/layouts.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { OrderDetailComponent } from './components/order/order-detail/order-detail/order-detail.component';
 import { OrderComponent } from './components/order/order.component';
 import { ProductAddComponent } from './components/product/product-add/product-add.component';
 import { ProductUpdateComponent } from './components/product/product-update/product-update.component';
@@ -29,11 +30,14 @@ const routes: Routes = [
       },
 
       { path: 'order', component: OrderComponent },
+      { path: 'order-detail/:id', component: OrderDetailComponent },
+
       { path: 'basket', component: BasketComponent },
       { path: 'login', component: LoginComponent },
     ],
   },
   { path: '**', component: NotFoundComponent },
+
 ];
 
 @NgModule({

@@ -6,6 +6,7 @@ import { BasketModel } from 'src/app/models/basket';
 import { ProductModel } from 'src/app/models/product';
 import { AuthService } from 'src/app/services/auth.service';
 import { BasketService } from 'src/app/services/basket.service';
+import { ErrService } from 'src/app/services/err.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -23,7 +24,8 @@ export class AddBasketComponent implements OnInit, AfterContentChecked {
     private basketService: BasketService,
     private authService: AuthService,
     private httpClient: HttpClient,
-    private spinner: NgxSpinnerService) { }
+    private spinner: NgxSpinnerService,
+    private errorService:ErrService) { }
 
   ngOnInit(): void {
     this.getList();
@@ -45,10 +47,7 @@ export class AddBasketComponent implements OnInit, AfterContentChecked {
       },
       (err) => {
         this.spinner.hide();
-        if (err.status == '400') {
-          this.toastrService.error(err.statusText);
-        } else {
-        }
+        this.errorService.errorHandler(err)
       }
     );
   }

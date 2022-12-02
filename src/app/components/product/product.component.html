@@ -7,7 +7,7 @@
   ><p style="color: white">Loading...</p></ngx-spinner
 >
 
-<main style="padding-top: 160px; display: flex; justify-content: space-between">
+<main style="padding-top: 160px;width: 100%;overflow-x: hidden;max-width:100%; ">
   <div>
     <div id="cards">
       <div
@@ -16,17 +16,17 @@
         id="card"
       >
         <div class="card-group">
+          <i
+            class="fa fa-plus"
+            aria-hidden="true"
+            (click)="addBasket(product)"
+            *ngIf="isAuth"
+          ></i>
+
           <img src="{{ product.imageUrl }}" class="card-img-top" />
           <div class="card-body">
             <div class="text-center" style="margin-bottom: 7px">
-              <p
-
-                style="
-                  color: black;
-                  word-wrap: break-word;
-                  width: 100%;
-                "
-              >
+              <p style="color: black; word-wrap: break-word; width: 100%">
                 {{ product.name }}
               </p>
               <p class="price-hp">{{ product.price }} TL</p>
@@ -44,35 +44,20 @@
                 </div>
               </div>
             </div>
-            <div class="text-center my-4">
-              <a
-                href="#"
-                style="background-color: #5d3ebc; color: aliceblue"
-                *ngIf="isAuth"
-                class="btn btn mt-2"
-                (click)="addBasket(product)"
-                >Add to Cart</a
-              >
-            </div>
 
             <div class="text-center my-4">
               <a
                 href="#"
-                style="background-color: #FD841F; color: aliceblue"
+                style="background-color: #fd841f; color: aliceblue"
                 *ngIf="isAuth"
                 class="btn btn mt-2"
-               routerLink="/product-update/{{product.codeGuid}}"
+                routerLink="/product-update/{{ product.codeGuid }}"
                 >Update Product</a
               >
-
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
   </div>
 </main>

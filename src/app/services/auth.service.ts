@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { LoginModel } from '../models/login';
 import { SingleResponseModel } from '../models/singleResponseModel';
 import { TokenModel } from '../models/token';
+import { ErrService } from './err.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +14,11 @@ import { TokenModel } from '../models/token';
 export class AuthService {
   isAuth: boolean = false;
   constructor(
+    @Inject('apiUrl') private apiUrl: string,
     private httpClient: HttpClient,
     private toastrService: ToastrService,
-    private router: Router
+    private router: Router,
+    private errorService:ErrService
   ) {}
 
   isAuthenticated(): boolean {
@@ -26,7 +29,7 @@ export class AuthService {
     }
   }
   login(loginModel: LoginModel): boolean {
-    let api = 'https://webapi.angulareducation.com/api/users/login';
+    let api = this.apiUrl+'users/login';
     this.httpClient
       .post<SingleResponseModel<TokenModel>>(api, loginModel)
       .subscribe(
@@ -38,7 +41,7 @@ export class AuthService {
           return true;
         },
         (err) => {
-          this.toastrService.error(err.error);
+         this.errorService.errorHandler(err)
           return false;
         }
       );

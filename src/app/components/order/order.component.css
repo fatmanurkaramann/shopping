@@ -1,0 +1,42 @@
+
+.container{
+  width: 50%;
+  background-color: rgb(255, 255, 255);
+  padding-top: 160px;
+}
+.row{
+height: 150px;
+border: 2px solid #f3f0fe;
+border-radius: 8px;
+padding: 5px;
+}
+.button{
+  display: inline-block;
+  height: 50px;
+  padding: 0;
+  border: none;
+  outline:none ;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  border: 0.5px solid #f3f0fe;
+  border-radius: 8px;
+}
+.button-text{
+  display: inline-flex;
+  align-items: center;
+  padding: 0 24px ;
+  height: 100%;
+}
+.button-icon{
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px ;
+  height: 100%;
+}
+.button-icon{
+  background-color: white;
+  font-size: 1.5em;
+}

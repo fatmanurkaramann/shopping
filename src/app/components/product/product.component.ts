@@ -13,7 +13,9 @@ import { ProductModel } from 'src/app/models/product';
 import { ResponseModel } from 'src/app/models/responseModel';
 import { AuthService } from 'src/app/services/auth.service';
 import { BasketService } from 'src/app/services/basket.service';
+import { ErrService } from 'src/app/services/err.service';
 import { ProductService } from 'src/app/services/product.service';
+
 
 @Component({
   selector: 'app-product',
@@ -25,13 +27,16 @@ export class ProductComponent implements OnInit, AfterContentChecked {
   isAuth: boolean = false;
   filterText: string = '';
   isLoaded: boolean = false;
+  panelOpenState=false;
+
   constructor(
     private toastrService: ToastrService,
     private productService: ProductService,
     private basketService: BasketService,
     private authService: AuthService,
     private httpClient: HttpClient,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private errorService:ErrService
   ) {}
 
   ngOnInit(): void {
@@ -49,14 +54,10 @@ export class ProductComponent implements OnInit, AfterContentChecked {
       (res: any) => {
         this.spinner.hide();
         this.products = res.data;
-        console.log(this.products);
       },
       (err) => {
         this.spinner.hide();
-        if (err.status == '400') {
-          this.toastrService.error(err.statusText);
-        } else {
-        }
+        this.errorService.errorHandler(err)
       }
     );
   }

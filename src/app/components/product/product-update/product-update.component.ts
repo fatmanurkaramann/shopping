@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -14,11 +14,12 @@ export class ProductUpdateComponent implements OnInit {
   updateForm: FormGroup;
   productModel: ProductModel;
   constructor(
+    @Inject('validError') private validError: string,
     private productService: ProductService,
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private route: Router,
-    private toastrService:ToastrService
+    private toastrService: ToastrService
   ) {}
   ngOnInit(): void {
     this.crateUpdateForm();
@@ -31,33 +32,34 @@ export class ProductUpdateComponent implements OnInit {
       price: [0, Validators.required],
       inventoryQuantity: [0, Validators.required],
       id: [0, Validators.required],
-      codeGuid:[""]
+      codeGuid: [''],
     });
   }
   getById() {
-    let guid:string="";
-    this.activatedRoute.params.subscribe((params)=>{
-      guid=params["value"]
-    })
-    this.productService.getById(guid).subscribe((res)=>{
-      this.productModel=res.data;
-      this.updateForm.controls["name"].setValue(res.data.name)
-      this.updateForm.controls["imageUrl"].setValue(res.data.imageUrl)
-      this.updateForm.controls["price"].setValue(res.data.price)
-      this.updateForm.controls["inventoryQuantity"].setValue(res.data.inventoryQuantity)
-      this.updateForm.controls["id"].setValue(res.data.id)
-      this.updateForm.controls["codeGuid"].setValue(res.data.codeGuid)
-    })
+    let guid: string = '';
+    this.activatedRoute.params.subscribe((params) => {
+      guid = params['value'];
+    });
+    this.productService.getById(guid).subscribe((res) => {
+      this.productModel = res.data;
+      this.updateForm.controls['name'].setValue(res.data.name);
+      this.updateForm.controls['imageUrl'].setValue(res.data.imageUrl);
+      this.updateForm.controls['price'].setValue(res.data.price);
+      this.updateForm.controls['inventoryQuantity'].setValue(
+        res.data.inventoryQuantity
+      );
+      this.updateForm.controls['id'].setValue(res.data.id);
+      this.updateForm.controls['codeGuid'].setValue(res.data.codeGuid);
+    });
   }
   update() {
-    if(this.updateForm.valid){
-      this.productService.update(this.updateForm.value).subscribe((res)=>{
-        this.route.navigate(["/"])
-        this.toastrService.success(res.message)
-      })
-    }
-    else{
-      this.toastrService.info("Zorunlu alanları doldurunuz.")
+    if (this.updateForm.valid) {
+      this.productService.update(this.updateForm.value).subscribe((res) => {
+        this.route.navigate(['/']);
+        this.toastrService.success(res.message);
+      });
+    } else {
+      this.toastrService.info(this.validError);
     }
   }
 }

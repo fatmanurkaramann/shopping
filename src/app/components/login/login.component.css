@@ -3,6 +3,7 @@
 body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
+
 }
 
 a {
@@ -34,6 +35,8 @@ h2 {
   width: 100%;
   min-height: 100%;
   padding: 20px;
+  z-index: 99999;
+  position: fixed;
 }
 
 #formContent {

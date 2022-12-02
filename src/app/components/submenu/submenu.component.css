@@ -1,44 +1,13 @@
-
-.navbar{
-  background-color:  rgb(76, 51, 152);
-	position:fixed; top:0px; left:0px; right:0px;
-    height:70px;
-    padding-left: 40px;
-    display: flex;
-    justify-content: space-around;
-    border: none;
-    outline: none;
-
-}
-.button{
-
-  color: rgb(219, 219, 255);
-  justify-content:center;
-  padding: 10px;
-}
-button i{
-  padding: 5px;
-}
-button{
-  background: #fafafa;
-
-}
-.logoutButton:hover{
-  color:darkslateblue;
-}
-.navbar a{
-  color: rgb(219, 219, 255);
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-.active{
-  background-color:  #5d3ebc;
-  border: none;
-  outline: none;
-  text-decoration: none;
-
-}
 .container {
-
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -46,12 +15,12 @@ button{
 }
 
 .dropdown {
-  position: fixed;
-  left: 73%;
-  margin-top: 9px;
-  width: 120px;
-  height: 45px;
-  z-index: 9999;
+  position: relative;
+  top: 50px;
+  left: 45%;
+  margin-top: 15px;
+  width: 300px;
+  height: 50px;
 }
 
 .dropdown::before {
@@ -75,7 +44,7 @@ button{
   transform: rotate(-225deg);
 }
 
-.dropdown i {
+.dropdown input {
   position: absolute;
   top: 0;
   left: 0;
@@ -93,8 +62,8 @@ button{
 
 .dropdown .options {
   position: absolute;
-  top: 40.5px;
-  width: 200px;
+  top: 70px;
+  width: 100%;
   background: #fff;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
@@ -108,10 +77,9 @@ button{
 .dropdown .options div {
   padding: 12px 20px;
   cursor: pointer;
-  z-index: 9999;
-
 }
 
 .dropdown .options div:hover {
-  color:darkslateblue;
+  background: #62baea;
+  color: #fff;
 }

@@ -1,0 +1,12 @@
+<div class="dropdown" *ngIf="isAuth" >
+  <i  class="fa fa-user-o" aria-hidden="true" placeholder="profil" type="text" readonly><a style="font-family: 'Times New Roman', Times, serif;padding-left: 10px;">Profil</a></i>
+  <div class="options">
+    <div style="color: darkslateblue;">Fatma Nur Karaman</div>
+    <div onclick="show('HTML')" routerLink="/order">Siparişlerim</div>
+    <div onclick="show('CSS')">Adreslerim</div>
+    <button class="logoutButton" style="border: none;
+    border: 0;margin-left: 12px;" *ngIf="isAuth"  href="#" (click)="logout()">
+      Çıkış Yap
+    </button>
+  </div>
+</div>

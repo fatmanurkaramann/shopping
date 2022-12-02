@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -22,11 +22,17 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/layouts/header/header.component';
 import { BasketIconComponent } from './components/basket-icon/basket-icon.component';
-import {MatDialogModule} from "@angular/material/dialog";
-import { ProductDeleteComponent } from './components/product/product-delete/product-delete.component'
+import { MatDialogModule } from '@angular/material/dialog';
+import { ProductDeleteComponent } from './components/product/product-delete/product-delete.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AddBasketComponent } from './components/basket/add-basket/add-basket.component';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { OrderDetailComponent } from './components/order/order-detail/order-detail/order-detail.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { SubmenuComponent } from './components/submenu/submenu.component';
+import { ProfilComponent } from './components/profil/profil.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,10 +53,15 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
     BasketIconComponent,
     ProductDeleteComponent,
     AddBasketComponent,
+    OrderDetailComponent,
+    SubmenuComponent,
+    ProfilComponent,
   ],
   imports: [
+    MatExpansionModule,
     ModalModule.forRoot(),
     MatDialogModule,
+    MatButtonModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -65,8 +76,13 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
       positionClass: 'toast-bottom-right',
     }),
   ],
-  providers: [BsModalService],
-  bootstrap: [AppComponent],
+  providers: [
+    BsModalService,
+    { provide: 'apiUrl', useValue: 'https://webapi.angulareducation.com/api/' },
+    { provide: 'validError', useValue: 'Zorunlu alanları doldurun' },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor,multi:true },
 
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -31,6 +31,26 @@ h2 {
   border: 0;
   border-radius: 1rem;
 }
+.btn.btn-success{
+  margin-top: 10px;
+  }
+  .label-control{
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    background-color:  #5d3ebc;
+    color: #FFFF
+  }
+  .button{
+    width: 32px;
+    height: 32px;
+    border: none;
+    color: #5d3ebc; background-color: #FFFF;
+  }
 .card-img,
 .card-img-top {
   border-top-left-radius: calc(1rem - 1px);
@@ -141,18 +161,33 @@ h2 {
 .price-hp {
   font-size: 1rem;
   font-weight: 600;
-  color: #6F38C5;
+  color: #6f38c5;
 }
 .amz-hp {
   font-size: 0.7rem;
   font-weight: 600;
   color: darkgray;
 }
-.fa-question-circle:before {
-  color: darkgray;
-}
-.fa-plus:before {
-  color: darkgray;
+
+.fa-plus{
+  color: #fff;
+  border-radius: 5px;
+ color: #6f38c5;
+  padding: 10px;
+  float: right;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-xs) rgba(0,0,0,0.1);
+  flex-direction: column-reverse;
+  position: relative;
+  top: 25px;
+  right: -190px;
 }
 
 .box {
@@ -212,8 +247,7 @@ footer {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
   gap: 20px;
-
 }
-p{
+p {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, "sans-serif";
 }

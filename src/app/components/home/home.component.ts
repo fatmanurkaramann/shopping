@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit{
   }
 
   ngAfterContentChecked(): void {
-    //console.log("ngAfterContentChecked çalışıyor")
     this.isAuth = this.authService.isAuthenticated();
   }
 

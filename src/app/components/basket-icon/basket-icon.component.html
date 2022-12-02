@@ -5,21 +5,28 @@
   crossorigin="anonymous"
   referrerpolicy="no-referrer"
 />
-<div *ngIf="this.total>0" >
-  <div class="row" style="position: relative;left: 100%;">
-
+<div >
+  <div class="row" style="position: relative; left: 60%; top: -3px">
     <div>
-      <div >
-        <button type="button" class="button" routerLink="/basket" *ngIf="isAuth"  (click)="contactDetail(basket)" >
-          <span class="button-icon"
-            ><i class="fa-solid fa-cart-shopping" style="color: rgb(76, 51, 152);"></i
-          ></span>
-          <span
-            class="button-text" style="background-color: rgba(255, 255, 255, 0.533); "
-            [innerText]="this.total | currency: '':'':'1.2-2'"
-          ></span>
-        </button>
-      </div>
+      <button
+        type="button"
+        class="button"
+        routerLink="/basket"
+
+        (click)="contactDetail(basket)"
+      >
+        <span class="button-icon"
+          ><i
+            class="fa-solid fa-cart-shopping"
+            style="color: rgb(76, 51, 152)"
+          ></i
+        ></span>
+        <span
+          class="button-text"
+          style="background-color: rgba(255, 255, 255, 0.533)"
+          [innerText]="this.total  | currency: '':'':'1.2-2'"
+        ></span>
+      </button>
     </div>
   </div>
 </div>

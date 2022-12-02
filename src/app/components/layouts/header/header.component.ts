@@ -13,6 +13,23 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  //   $(function() {
+  //     var header = $(".header");
+  //     $(window).scroll(function() {
+  //         var scroll = $(window).scrollTop();
+
+  //         if ((window).scrollY > 50) {
+  //             header.css({"background":"white"});
+
+
+  //         } else {
+  //             header.css({"background-color":"white"});
+
+
+
+  //         }
+  //     });
+  // });
   }
 
 }

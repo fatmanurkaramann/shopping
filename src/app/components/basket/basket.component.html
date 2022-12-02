@@ -1,20 +1,32 @@
 
-<div style="margin: 90px;">
-  <h3 class="text-center">Sepetiniz</h3>
-<table class="table">
+<div class="container">
+
+<table class="table table-sm">
   <thead>
+  <h3 class="text-center">Sepetim</h3>
+
     <tr>
-      <th>#</th>
-      <th>Product Name</th>
-      <th>Quantity</th>
-      <th>Total</th>
+
+      <th scope="col"></th>
+      <th scope="col"></th>
 
     </tr>
   </thead>
+
+
   <tbody>
+
     <tr *ngFor="let basket of baskets; let i = index">
-      <td>{{ i + 1 }}</td>
-      <td>{{ basket.product.name }}</td>
+
+      <td><img src="{{basket.product.imageUrl}}" style="display: block;
+        width: 100%;
+        max-height: 120px;
+        object-fit: contain;
+        padding: 10px;"></td>
+      <td >{{ basket.product.name }}</td>
+      <td>
+        {{ basket.quantity * basket.product.price | currency: "":"":"1.2-2" }} TL
+      </td>
       <td>
         <button *ngIf="basket.quantity==1" (click)="deleteItem(basket)" class="button"><i class="fa-regular fa-trash-can"></i></button>
         <button id="button" *ngIf="basket.quantity>1" (click)="updateBasket(basket,-1)" class="button" ><i class="fa fa-minus"></i></button>
@@ -35,9 +47,7 @@
            -->
         <!-- /> -->
       </td>
-      <td>
-        {{ basket.quantity * basket.product.price | currency: "":"":"1.2-2" }}
-      </td>
+
 
     </tr>
   </tbody>

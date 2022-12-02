@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { BasketModel } from '../models/basket';
@@ -7,9 +7,8 @@ import { ListResponseModel } from '../models/listResponseModel';
 import { OrderModel } from '../models/order';
 import { OrderAddDtoModel } from '../models/orderAddDto';
 import { PaymentModel } from '../models/payment';
-import { ProductModel } from '../models/product';
 import { ResponseModel } from '../models/responseModel';
-import { OrderService } from './order.service';
+import { ErrService } from './err.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,35 +18,37 @@ export class BasketService {
   total: number = 0;
   orders: OrderModel[] = [];
   constructor(
+    @Inject('apiUrl') private apiUrl: string,
     private toastrService: ToastrService,
-    private orderService: OrderService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private errorService:ErrService
   ) {}
 
   getList() {
-    let api = 'https://webapi.angulareducation.com/api/baskets/getlist';
+    let api = this.apiUrl + 'baskets/getlist';
     return this.httpClient
       .get<ListResponseModel<BasketModel>>(api)
       .subscribe((res) => {
         this.baskets = res.data;
         this.calc();
+      },(err)=>{
+        this.errorService.errorHandler(err)
+
       });
   }
   add(basketModel: BasketModel): Observable<ResponseModel> {
-    let api = 'https://webapi.angulareducation.com/api/baskets/add';
+    let api = this.apiUrl + 'baskets/add';
     return this.httpClient.post<ResponseModel>(api, basketModel);
   }
   delete(model: BasketModel): Observable<ResponseModel> {
-    let api = 'https://webapi.angulareducation.com/api/baskets/delete';
+    let api = this.apiUrl + 'baskets/delete';
     return this.httpClient.post<ResponseModel>(api, model);
   }
   update(model: BasketModel): Observable<ResponseModel> {
-    let api = 'https://webapi.angulareducation.com/api/baskets/update';
+    let api = this.apiUrl + 'baskets/update';
     return this.httpClient.post<ResponseModel>(api, model);
   }
-  getById(guid: string) {
-    let api = 'https://webapi.angulareducation.com/api/baskets/getById';
-  }
+
   calc() {
     this.total = 0;
     this.baskets.forEach((e) => {
@@ -59,16 +60,7 @@ export class BasketService {
     this.baskets[i].quantity = quantity;
     this.calc();
   }
-  // payment(total: number) {
-  //   if ((this.total = total)) {
-  //     let count = this.baskets.length;
-  //     this.orderService.addOrder(this.baskets)
 
-  //     // this.baskets.splice(0, count);
-  //     this.toastrService.info('ödeme başarılı');
-  //   }
-  //   this.calc();
-  // }
   payment(paymentModel: PaymentModel) {
     let api = 'https://webapi.angulareducation.com/api/Orders/addPayment';
     let orderModel = new OrderAddDtoModel();
@@ -77,6 +69,8 @@ export class BasketService {
     this.httpClient.post<ResponseModel>(api, orderModel).subscribe(() => {
       this.getList();
       this.toastrService.success('ödeme başarılı');
+    },(err)=>{
+      this.errorService.errorHandler(err)
     });
   }
 }
