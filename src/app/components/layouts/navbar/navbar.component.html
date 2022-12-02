@@ -78,15 +78,15 @@
         Siparişlerim
       </div>
       <div onclick="show('CSS')" *ngIf="isAuth">Adreslerim</div>
-      <button
+      <div
         class="logoutButton"
-        style="border: none; border: 0; margin-left: 12px"
+        style="border: none; border: 0; margin-left: 2px"
         *ngIf="isAuth"
         href="#"
         (click)="logout()"
       >
         Çıkış Yap
-      </button>
+      </div>
     </div>
 
   </div>
