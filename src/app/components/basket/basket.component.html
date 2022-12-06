@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container" *ngIf="this.total>0">
 
 <table class="table table-sm">
   <thead>
@@ -71,5 +71,14 @@
     Pay
   </button>
 </div>
-</div>
+
 <app-payment></app-payment>
+</div>
+<div *ngIf="this.total==0" style="padding-top: 170px;">
+
+
+  <p style="font-size: 40px;text-align: center;padding: 20px;">Sepetinizde Ürün Bulunmamaktadır.</p>
+
+
+  <i class="fa-solid fa-cart-shopping" style="font-size: 23em;text-align: center;margin: auto; display: block; color: rgb(76, 51, 152);"></i>
+</div>
