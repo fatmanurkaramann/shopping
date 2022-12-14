@@ -22,6 +22,23 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.createLoginForm();
+
+    $(function(){
+      var log = $("#log");
+      var reg=$("#reg")
+      reg.click(function(){
+       $("#login").css("left","-400px")
+       $("#register").css("left","50px")
+       $("#btn").css("left","110px")
+
+      })
+      log.click(function(){
+        $("#login").css("left","50px")
+        $("#register").css("left","450px")
+        $("#btn").css("left","0px")
+      })
+
+    })
   }
 
   createLoginForm(){

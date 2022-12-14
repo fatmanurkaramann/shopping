@@ -31,9 +31,9 @@ const routes: Routes = [
 
       { path: 'order', component: OrderComponent },
       { path: 'order-detail/:id', component: OrderDetailComponent },
+      { path: 'login', component: LoginComponent },
 
       { path: 'basket', component: BasketComponent },
-      { path: 'login', component: LoginComponent },
     ],
   },
   { path: '**', component: NotFoundComponent },

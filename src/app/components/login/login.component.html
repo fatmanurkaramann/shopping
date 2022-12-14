@@ -1,31 +1,75 @@
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <div class="fadeIn first">
-      <i class="fa fa-user" aria-hidden="true"></i>
-    </div>
 
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <input
-        type="text"
+
+  <div class="container" style="width: 100%;">
+  <div class="hero"  >
+    <div class="form-box" >
+      <div class="button-box" >
+        <div id="btn"></div>
+        <button type="submit" class="toggle-btn" id="log">Log In</button>
+        <button type="button" class="toggle-btn" id="reg">Register</button>
+      </div>
+      <div class="social-icons"></div>
+      <form
         id="login"
-        class="fadeIn second"
-        name="login"
-        placeholder="email"
-        formControlName="email"
-        required
-      />
-      <input
-      type="password" placeholder="Enter Password"  required
-        id="password"
-        class="fadeIn third"
-        name="login"
-        formControlName="password"
-      />
-      <input type="submit" class="fadeIn fourth" value="Log In" />
-    </form>
+        class="input-group"
+        [formGroup]="loginForm"
+        (ngSubmit)="login()"
+      >
+        <input
+          type="text"
+          class="input-field"
+          placeholder="Email"
+          formControlName="email"
+          name="login"
+          required
+          style="border-radius: 5px"
+        />
+        <input
+          type="password"
+          class="input-field"
+          placeholder="Password"
+          name="login"
+          formControlName="password"
+          required
+          style="border-radius: 5px"
+        />
+        <input type="checkbox" value="Remember password" class="check-box" />
+        <label for="vehicle1"> Remember Password</label>
+        <button type="submit" class="submit-btn" style="border-radius: 5px">
+          Log In
+        </button>
+      </form>
+      <form id="register" class="input-group">
+        <input
+          type="text"
+          class="input-field"
+          placeholder="User Id"
+          style="border-radius: 5px"
+          required
+        />
+        <input
+          type="email"
+          class="input-field"
+          placeholder="Email"
+          style="border-radius: 5px"
+          required
+        />
+        <input
+          type="password"
+          class="input-field"
+          placeholder="Password"
+          style="border-radius: 5px"
+          required
+        />
+        <input type="checkbox" value="Remember password" class="check-box" />
+        <label for="vehicle1"> Remember Password</label>
 
-    <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
+        <button type="submit" class="submit-btn" style="border-radius: 5px">
+          Register
+        </button>
+      </form>
     </div>
   </div>
+
 </div>
+

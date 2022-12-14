@@ -8,6 +8,7 @@
     justify-content: space-around;
     border: none;
     outline: none;
+    z-index: 9999;
 
 }
 .button{
